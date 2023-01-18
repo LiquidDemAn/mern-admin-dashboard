@@ -1,5 +1,8 @@
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { useMemo } from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Layout } from './components/layout';
+import { DashboardPage } from './pages/dashboard';
 import { getMode } from './redux/state/selectors';
 import { useAppSelector } from './redux/store/hooks';
 import { themeSettings } from './theme';
@@ -10,9 +13,17 @@ function App() {
 
 	return (
 		<div className='app'>
-			<ThemeProvider theme={theme}>
-				<CssBaseline />
-			</ThemeProvider>
+			<BrowserRouter>
+				<ThemeProvider theme={theme}>
+					<CssBaseline />
+					<Routes>
+						<Route element={<Layout />}>
+							<Route path='/' element={<Navigate to='/dashboard' replace />} />
+							<Route path='/dashboard' element={<DashboardPage />} />
+						</Route>
+					</Routes>
+				</ThemeProvider>
+			</BrowserRouter>
 		</div>
 	);
 }
