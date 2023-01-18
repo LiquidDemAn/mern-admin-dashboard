@@ -5,10 +5,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import clientRoutes from './routes/client.js'
-import generalRoutes from './routes/general.js'
-import managementRoutes from './routes/management.js'
-import salesRoutes from './routes/sales.js'
+import clientRoutes from './routes/client.js';
+import generalRoutes from './routes/general.js';
+import managementRoutes from './routes/management.js';
+import salesRoutes from './routes/sales.js';
 
 /* CONFIGURATION */
 
@@ -29,3 +29,23 @@ app.use('/client', clientRoutes);
 app.use('/general', generalRoutes);
 app.use('/management', managementRoutes);
 app.use('/sales', salesRoutes);
+
+/* MONGOOSE SETUP */
+const PORT = process.env.PORT || 5000;
+
+mongoose
+	.connect(process.env.MONGODB_URI, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
+	.then(
+		app.listen(PORT, (error) => {
+			if (error) {
+				console.log(`Server Error: ${error}`);
+			}
+
+			console.log(`Server Started On Port: ${PORT}`);
+            console.log('DB Connected')
+		})
+	)
+	.catch((error) => console.log('DB Error', error));
