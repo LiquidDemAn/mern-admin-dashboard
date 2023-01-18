@@ -1,4 +1,6 @@
 // color design tokens export
+export type ModeType = 'dark' | 'light';
+
 export const tokensDark = {
 	grey: {
 		0: '#ffffff', // manually adjusted
