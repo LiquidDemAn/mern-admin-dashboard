@@ -1,3 +1,12 @@
+declare module '@mui/material/styles' {
+	interface Palette {
+		backgroundAlt: { alt: string };
+		neutral: typeof tokensDark.grey;
+		primaryCustom: typeof tokensDark.primary;
+		secondaryCustom: typeof tokensDark.secondary;
+	}
+}
+
 // color design tokens export
 export type ModeType = 'dark' | 'light';
 
@@ -72,34 +81,48 @@ export const themeSettings = (mode: ModeType) => {
 				? {
 						// palette values for dark mode
 						primary: {
-							...tokensDark.primary,
 							main: tokensDark.primary[400],
 							light: tokensDark.primary[400],
 						},
+						primaryCustom: {
+							...tokensDark.primary,
+						},
 						secondary: {
-							...tokensDark.secondary,
 							main: tokensDark.secondary[300],
 						},
+
+						secondaryCustom: {
+							...tokensDark.secondary,
+						},
+
 						neutral: {
 							...tokensDark.grey,
 							main: tokensDark.grey[500],
 						},
+
 						background: {
 							default: tokensDark.primary[600],
 							paper: tokensDark.primary[500],
+						},
+						backgroundAlt: {
+							alt: tokensDark.primary[500],
 						},
 				  }
 				: {
 						// palette values for light mode
 						primary: {
-							...tokensLight.primary,
 							main: tokensDark.grey[50],
 							light: tokensDark.grey[100],
 						},
+						primaryCustom: {
+							...tokensLight.primary,
+						},
 						secondary: {
-							...tokensLight.secondary,
 							main: tokensDark.secondary[600],
 							light: tokensDark.secondary[700],
+						},
+						secondaryCustom: {
+							...tokensLight.secondary,
 						},
 						neutral: {
 							...tokensLight.grey,
@@ -107,8 +130,11 @@ export const themeSettings = (mode: ModeType) => {
 						},
 						background: {
 							default: tokensDark.grey[0],
-							paper: tokensDark.grey[50],
-							alt: 'red',
+							alt: tokensDark.grey[50],
+						},
+
+						backgroundAlt: {
+							alt: tokensDark.grey[50],
 						},
 				  }),
 		},

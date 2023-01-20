@@ -17,9 +17,18 @@ import {
 	SettingsIcon,
 } from './navbar.styled';
 
-export const Navbar = () => {
+type Props = {
+	isSidebarOpen: boolean;
+	setIsSidebarOpen: (value: boolean) => void;
+};
+
+export const Navbar = ({ isSidebarOpen, setIsSidebarOpen }: Props) => {
 	const dispatch = useAppDispatch();
 	const theme = useTheme();
+
+	const menuToggle = () => {
+		setIsSidebarOpen(!isSidebarOpen);
+	};
 
 	const toggleMode = () => {
 		dispatch(setMode());
@@ -30,11 +39,11 @@ export const Navbar = () => {
 			<Wrapper>
 				{/* LEFT SIDE */}
 				<FlexBetween>
-					<IconButton>
+					<IconButton onClick={menuToggle}>
 						<MenuIcon />
 					</IconButton>
 
-					<SearchWrapper backgroundColor={theme.palette.background.paper}>
+					<SearchWrapper backgroundColor={theme.palette.backgroundAlt.alt}>
 						<InputBase placeholder='Search...' />
 						<IconButton>
 							<Search />

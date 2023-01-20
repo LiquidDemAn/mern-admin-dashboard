@@ -19,7 +19,7 @@ export const Wrapper = styled(Toolbar)({
 
 export const SearchWrapper = styled(FlexBetween)(
 	({ backgroundColor }: { backgroundColor: string }) => ({
-		padding: '0.1rem 1.5rem',
+		padding: '0.1rem 1rem',
 		gap: '3rem',
 		borderRadius: '9px',
 		backgroundColor,
