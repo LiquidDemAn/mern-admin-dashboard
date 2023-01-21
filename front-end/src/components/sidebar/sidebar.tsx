@@ -35,8 +35,10 @@ import {
 	LinkInner,
 	LinkIcon,
 } from './sidebar.styled';
+import { UserType } from '../../redux/state/typedef';
 
 type Props = {
+	user?: UserType;
 	isSidebarOpen: boolean;
 	isNonMobile: boolean;
 	setIsSidebarOpen: (value: boolean) => void;
@@ -116,6 +118,7 @@ export const Sidebar = ({
 	isSidebarOpen,
 	setIsSidebarOpen,
 	isNonMobile,
+	user,
 }: Props) => {
 	const { pathname } = useLocation();
 	const { palette } = useTheme();
