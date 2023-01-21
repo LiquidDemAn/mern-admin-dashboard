@@ -10,6 +10,10 @@ import generalRoutes from './routes/general.js';
 import managementRoutes from './routes/management.js';
 import salesRoutes from './routes/sales.js';
 
+/* IMPORT MOCK DATA */
+import User from './models/User.js';
+import { dataUser } from './data/index.js';
+
 /* CONFIGURATION */
 
 dotenv.config();
@@ -38,14 +42,17 @@ mongoose
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
-	.then(
+	.then(() => {
+		console.log('DB Connected');
+
 		app.listen(PORT, (error) => {
 			if (error) {
 				console.log(`Server Error: ${error}`);
 			}
 
 			console.log(`Server Started On Port: ${PORT}`);
-            console.log('DB Connected')
-		})
-	)
+		});
+		/* ONLY ADD DATA ONE TIME */
+		// User.insertMany(dataUser);
+	})
 	.catch((error) => console.log('DB Error', error));
