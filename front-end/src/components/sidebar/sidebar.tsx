@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { UserType } from '../../redux/state/typedef';
+import { UserCard } from '../user-card';
+
 import {
-	// SettingsOutlined,
-	// ChevronLeftOutlined,
 	ChevronRightOutlined,
 	HomeOutlined,
 	ShoppingCartOutlined,
@@ -16,15 +18,16 @@ import {
 	PieChartOutlined,
 	ChevronLeft,
 } from '@mui/icons-material';
-import { useLocation } from 'react-router-dom';
+
 import {
 	Box,
+	Divider,
 	IconButton,
-	List,
 	ListItem,
 	ListItemText,
 	useTheme,
 } from '@mui/material';
+
 import {
 	DrawerInner,
 	DrawerStyled,
@@ -34,8 +37,11 @@ import {
 	ListTitle,
 	LinkInner,
 	LinkIcon,
+	ListStyled,
+	UserContainer,
+	Settings,
+	UserWrapper,
 } from './sidebar.styled';
-import { UserType } from '../../redux/state/typedef';
 
 type Props = {
 	user?: UserType;
@@ -156,7 +162,7 @@ export const Sidebar = ({
 								</IconButton>
 							)}
 						</Header>
-						<List>
+						<ListStyled>
 							{navItems.map(({ text, icon, to }) =>
 								to ? (
 									<ListItem key={text} disablePadding>
@@ -175,7 +181,15 @@ export const Sidebar = ({
 									<ListTitle key={text}>{text}</ListTitle>
 								)
 							)}
-						</List>
+						</ListStyled>
+
+						<UserContainer>
+							<Divider />
+							<UserWrapper>
+								<UserCard />
+								<Settings iconColor={palette.secondaryCustom[300]} />
+							</UserWrapper>
+						</UserContainer>
 					</DrawerInner>
 				</DrawerStyled>
 			)}

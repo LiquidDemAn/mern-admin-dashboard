@@ -2,12 +2,15 @@ import { styled } from '@mui/system';
 import {
 	Box,
 	Drawer,
+	List,
 	ListItemButton,
 	ListItemIcon,
 	Palette,
 	Typography,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { SettingsOutlined } from '@mui/icons-material';
+import { FlexBetween } from '../../global.styled';
 
 type DrawerStyledProps = {
 	color: string;
@@ -57,6 +60,11 @@ export const LinkStyled = styled(Link)({
 	textDecoration: 'none',
 });
 
+export const ListStyled = styled(List)({
+	height: '75vh',
+	overflow: 'auto',
+});
+
 export const ListTitle = styled(Typography)({
 	margin: '2.25rem 0 1rem 3rem',
 });
@@ -72,5 +80,22 @@ export const LinkInner = styled(ListItemButton)(
 export const LinkIcon = styled(ListItemIcon)(
 	({ palette, isActive }: LinkProps) => ({
 		color: isActive ? palette.primaryCustom[600] : palette.secondaryCustom[200],
+	})
+);
+
+export const UserContainer = styled(Box)({
+	position: 'absolute',
+	bottom: '1rem',
+});
+
+export const UserWrapper = styled(FlexBetween)({
+	margin: '1rem 2rem 0 3rem',
+	gap: '1rem'
+})
+
+export const Settings = styled(SettingsOutlined)(
+	({ iconColor }: { iconColor: string }) => ({
+		fontSize: '25px',
+		color: iconColor,
 	})
 );
