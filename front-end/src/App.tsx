@@ -5,7 +5,7 @@ import { Layout } from './components/layout';
 import { DashboardPage } from './pages/dashboard';
 import { getMode } from './redux/state/selectors';
 import { useAppSelector } from './redux/store/hooks';
-import { themeSettings } from './theme';
+import { themeSettings } from './theme/theme-settings';
 
 function App() {
 	const mode = useAppSelector(getMode);

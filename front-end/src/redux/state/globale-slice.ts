@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ModeType } from '../../theme';
+import { ModeType } from '../../theme/typedef';
 
 type StateType = {
 	mode: ModeType;
