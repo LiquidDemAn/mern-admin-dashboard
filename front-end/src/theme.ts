@@ -130,7 +130,6 @@ export const themeSettings = (mode: ModeType) => {
 						},
 						background: {
 							default: tokensDark.grey[0],
-							alt: tokensDark.grey[50],
 						},
 
 						backgroundAlt: {
