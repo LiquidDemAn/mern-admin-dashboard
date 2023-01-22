@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { UserType } from './typedef';
+import { ProductType, UserType } from './typedef';
 
 export const api = createApi({
 	reducerPath: 'adminApi',
@@ -10,8 +10,8 @@ export const api = createApi({
 			query: (id) => `general/user/${id}`,
 			providesTags: ['User'],
 		}),
-		getProducts: build.query<any, void>({
-			query: (arg) => 'client/products',
+		getProducts: build.query<ProductType[], void>({
+			query: () => 'client/products',
 			providesTags: ['Products'],
 		}),
 	}),
