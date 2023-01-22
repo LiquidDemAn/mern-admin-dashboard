@@ -12,7 +12,10 @@ import salesRoutes from './routes/sales.js';
 
 /* IMPORT MOCK DATA */
 import User from './models/User.js';
-import { dataUser } from './data/index.js';
+import Product from './models/Product.js';
+import ProductStat from './models/ProductStat.js';
+
+import { dataUser, dataProduct, dataProductStat } from './data/index.js';
 
 /* CONFIGURATION */
 
@@ -37,6 +40,7 @@ app.use('/sales', salesRoutes);
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 5000;
 
+mongoose.set('strictQuery', false);
 mongoose
 	.connect(process.env.MONGODB_URI, {
 		useNewUrlParser: true,
@@ -54,5 +58,7 @@ mongoose
 		});
 		/* ONLY ADD DATA ONE TIME */
 		// User.insertMany(dataUser);
+		// Product.insertMany(dataProduct);
+		// ProductStat.insertMany(dataProductStat);
 	})
 	.catch((error) => console.log('DB Error', error));
