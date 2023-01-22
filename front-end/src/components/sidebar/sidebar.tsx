@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { UserType } from '../../redux/state/typedef';
 import { UserCard } from '../user-card';
 
 import {
@@ -44,10 +43,10 @@ import {
 } from './sidebar.styled';
 
 type Props = {
-	user?: UserType;
 	isSidebarOpen: boolean;
 	isNonMobile: boolean;
-	setIsSidebarOpen: (value: boolean) => void;
+	menuToggle: () => void;
+	handleClose: () => void;
 };
 
 const navItems = [
@@ -122,21 +121,13 @@ const navItems = [
 
 export const Sidebar = ({
 	isSidebarOpen,
-	setIsSidebarOpen,
 	isNonMobile,
-	user,
+	menuToggle,
+	handleClose,
 }: Props) => {
 	const { pathname } = useLocation();
 	const { palette } = useTheme();
 	const [active, setActive] = useState('');
-
-	const handleClose = () => {
-		setIsSidebarOpen(false);
-	};
-
-	const sidebarToggle = () => {
-		setIsSidebarOpen(!isSidebarOpen);
-	};
 
 	useEffect(() => {
 		setActive(pathname.substring(1));
@@ -157,7 +148,7 @@ export const Sidebar = ({
 						<Header color={palette.secondary.main}>
 							<Logo variant='h4'>ECOMVISION</Logo>
 							{!isNonMobile && (
-								<IconButton onClick={sidebarToggle}>
+								<IconButton onClick={menuToggle}>
 									<ChevronLeft />
 								</IconButton>
 							)}

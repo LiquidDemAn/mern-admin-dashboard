@@ -10,3 +10,7 @@ export const Container = styled(Box)(() => ({
 		display: 'flex',
 	},
 }));
+
+export const MainWrapper = styled(Box)({
+	flexGrow: 1,
+});

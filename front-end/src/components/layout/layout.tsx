@@ -1,39 +1,37 @@
-import { Box, useMediaQuery } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useGetUserQuery } from '../../redux/state/api';
-import { getUserId } from '../../redux/state/selectors';
-import { useAppSelector } from '../../redux/store/hooks';
 import { Navbar } from '../navbar';
 import { Sidebar } from '../sidebar';
-import { Container } from './layout.styled';
+import { Container, MainWrapper } from './layout.styled';
 
 export const Layout = () => {
 	const isNonMobile = useMediaQuery('(min-width: 600px)');
 	const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-	const userId = useAppSelector(getUserId);
+	const menuToggle = () => {
+		setIsSidebarOpen(!isSidebarOpen);
+	};
 
-	const { data } = useGetUserQuery(userId);
+	const handleMenuClose = () => {
+		setIsSidebarOpen(false);
+	};
 
 	return (
 		<Container>
 			{isSidebarOpen && (
 				<Sidebar
-					user={data}
 					isSidebarOpen={isSidebarOpen}
-					setIsSidebarOpen={setIsSidebarOpen}
 					isNonMobile={isNonMobile}
+					menuToggle={menuToggle}
+					handleClose={handleMenuClose}
 				/>
 			)}
 
-			<Box>
-				<Navbar
-					isSidebarOpen={isSidebarOpen}
-					setIsSidebarOpen={setIsSidebarOpen}
-				/>
+			<MainWrapper>
+				<Navbar menuToggle={menuToggle} />
 				<Outlet />
-			</Box>
+			</MainWrapper>
 		</Container>
 	);
 };
