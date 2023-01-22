@@ -1,4 +1,4 @@
-import { AppBar, Toolbar } from '@mui/material';
+import { AppBar, Toolbar, Button } from '@mui/material';
 import { styled } from '@mui/system';
 import { FlexBetween } from '../../global.styled';
 import {
@@ -14,6 +14,7 @@ export const Container = styled(AppBar)({
 });
 
 export const Wrapper = styled(Toolbar)({
+	display: 'flex',
 	justifyContent: 'space-between',
 });
 
@@ -26,6 +27,10 @@ export const SearchWrapper = styled(FlexBetween)(
 	})
 );
 
+export const RightBlock = styled(FlexBetween)({
+	gap: '1.5rem'
+})
+
 export const DarkModeIcon = styled(DarkModeOutlined)({
 	fontSize: 25,
 });
@@ -36,4 +41,8 @@ export const LightModeIcon = styled(LightModeOutlined)({
 
 export const SettingsIcon = styled(SettingsOutlined)({
 	fontSize: 25,
+});
+
+export const UserButton = styled(Button)({
+	textTransform: 'none',
 });

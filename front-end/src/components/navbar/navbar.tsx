@@ -3,11 +3,12 @@ import {
 	ArrowDropDownOutlined,
 	Menu as MenuIcon,
 } from '@mui/icons-material';
-import { AppBar, IconButton, InputBase, useTheme } from '@mui/material';
-import profileImage from '../../assets/profile.jpeg';
+import { IconButton, InputBase, Menu, MenuItem, useTheme } from '@mui/material';
+import { useState } from 'react';
 import { FlexBetween } from '../../global.styled';
 import { setMode } from '../../redux/state/globale-slice';
 import { useAppDispatch } from '../../redux/store/hooks';
+import { UserCard } from '../user-card';
 import {
 	Container,
 	SearchWrapper,
@@ -15,19 +16,27 @@ import {
 	LightModeIcon,
 	DarkModeIcon,
 	SettingsIcon,
+	UserButton,
+	RightBlock,
 } from './navbar.styled';
 
 type Props = {
-	isSidebarOpen: boolean;
-	setIsSidebarOpen: (value: boolean) => void;
+	menuToggle: () => void;
 };
 
-export const Navbar = ({ isSidebarOpen, setIsSidebarOpen }: Props) => {
+export const Navbar = ({ menuToggle }: Props) => {
 	const dispatch = useAppDispatch();
-	const theme = useTheme();
+	const { palette } = useTheme();
 
-	const menuToggle = () => {
-		setIsSidebarOpen(!isSidebarOpen);
+	const [anchorEl, setAnchorEl] = useState(null);
+	const isOpen = Boolean(anchorEl);
+
+	const handleClick = (event: any) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
 	};
 
 	const toggleMode = () => {
@@ -43,7 +52,7 @@ export const Navbar = ({ isSidebarOpen, setIsSidebarOpen }: Props) => {
 						<MenuIcon />
 					</IconButton>
 
-					<SearchWrapper backgroundColor={theme.palette.backgroundAlt.alt}>
+					<SearchWrapper backgroundColor={palette.backgroundAlt.alt}>
 						<InputBase placeholder='Search...' />
 						<IconButton>
 							<Search />
@@ -52,19 +61,32 @@ export const Navbar = ({ isSidebarOpen, setIsSidebarOpen }: Props) => {
 				</FlexBetween>
 
 				{/* RIGHT SIDE */}
-				<FlexBetween gap='1.5rem'>
+				<RightBlock>
 					<IconButton onClick={toggleMode}>
-						{theme.palette.mode === 'dark' ? (
-							<DarkModeIcon />
-						) : (
-							<LightModeIcon />
-						)}
+						{palette.mode === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
 					</IconButton>
 
 					<IconButton>
 						<SettingsIcon />
 					</IconButton>
-				</FlexBetween>
+
+					<FlexBetween>
+						<UserButton onClick={handleClick}>
+							<UserCard />
+							<ArrowDropDownOutlined
+								sx={{ color: palette.secondaryCustom[300], fontSize: '25px' }}
+							/>
+						</UserButton>
+						<Menu
+							anchorEl={anchorEl}
+							open={isOpen}
+							onClose={handleClose}
+							anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+						>
+							<MenuItem onClick={handleClose}>Log out</MenuItem>
+						</Menu>
+					</FlexBetween>
+				</RightBlock>
 			</Wrapper>
 		</Container>
 	);

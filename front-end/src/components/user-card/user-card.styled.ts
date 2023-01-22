@@ -12,6 +12,7 @@ export const UserImg = styled('img')({
 export const UserName = styled(Typography)({
 	fontWeight: 700,
 	fontSize: '0.9rem',
+	textAlign: 'left',
 });
 
 export const UserOccupation = styled(Typography)({
