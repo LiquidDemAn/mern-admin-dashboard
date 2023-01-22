@@ -1,11 +1,6 @@
 import { AppBar, Toolbar, Button } from '@mui/material';
 import { styled } from '@mui/system';
 import { FlexBetween } from '../../global.styled';
-import {
-	DarkModeOutlined,
-	LightModeOutlined,
-	SettingsOutlined,
-} from '@mui/icons-material';
 
 export const Container = styled(AppBar)({
 	position: 'static',
@@ -16,6 +11,10 @@ export const Container = styled(AppBar)({
 export const Wrapper = styled(Toolbar)({
 	display: 'flex',
 	justifyContent: 'space-between',
+
+	svg: {
+		fontSize: 25,
+	},
 });
 
 export const SearchWrapper = styled(FlexBetween)(
@@ -28,19 +27,7 @@ export const SearchWrapper = styled(FlexBetween)(
 );
 
 export const RightBlock = styled(FlexBetween)({
-	gap: '1.5rem'
-})
-
-export const DarkModeIcon = styled(DarkModeOutlined)({
-	fontSize: 25,
-});
-
-export const LightModeIcon = styled(LightModeOutlined)({
-	fontSize: 25,
-});
-
-export const SettingsIcon = styled(SettingsOutlined)({
-	fontSize: 25,
+	gap: '1.5rem',
 });
 
 export const UserButton = styled(Button)({

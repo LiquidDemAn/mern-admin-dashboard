@@ -2,6 +2,9 @@ import {
 	Search,
 	ArrowDropDownOutlined,
 	Menu as MenuIcon,
+	DarkModeOutlined,
+	LightModeOutlined,
+	SettingsOutlined,
 } from '@mui/icons-material';
 import { IconButton, InputBase, Menu, MenuItem, useTheme } from '@mui/material';
 import { useState } from 'react';
@@ -13,9 +16,6 @@ import {
 	Container,
 	SearchWrapper,
 	Wrapper,
-	LightModeIcon,
-	DarkModeIcon,
-	SettingsIcon,
 	UserButton,
 	RightBlock,
 } from './navbar.styled';
@@ -63,19 +63,21 @@ export const Navbar = ({ menuToggle }: Props) => {
 				{/* RIGHT SIDE */}
 				<RightBlock>
 					<IconButton onClick={toggleMode}>
-						{palette.mode === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
+						{palette.mode === 'dark' ? (
+							<DarkModeOutlined />
+						) : (
+							<LightModeOutlined />
+						)}
 					</IconButton>
 
 					<IconButton>
-						<SettingsIcon />
+						<SettingsOutlined />
 					</IconButton>
 
 					<FlexBetween>
 						<UserButton onClick={handleClick}>
 							<UserCard />
-							<ArrowDropDownOutlined
-								sx={{ color: palette.secondaryCustom[300], fontSize: '25px' }}
-							/>
+							<ArrowDropDownOutlined htmlColor={palette.secondaryCustom[300]} />
 						</UserButton>
 						<Menu
 							anchorEl={anchorEl}
