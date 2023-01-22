@@ -11,3 +11,39 @@ export type UserType = {
 	role: 'user' | 'admin' | 'superadmin';
 	transactions: string[];
 };
+
+type DayDataType = {
+	_id: string;
+	data: string;
+	totalSales: number;
+	totalUnits: number;
+};
+
+type MonthDataType = {
+	_id: string;
+	month: string;
+	totalSales: number;
+	totalUnits: number;
+};
+
+export type ProductStatType = {
+	_id: string;
+	productId: string;
+	yearlySalesTotal: number;
+	yearlyTotalSoldUnits: number;
+	dailyData: DayDataType[];
+	monthlyData: MonthDataType[];
+	createdAt: string;
+};
+
+export type ProductType = {
+	_id: string;
+	name: string;
+	category: string;
+	description: string;
+	price: number;
+	rating: number;
+	supply: number;
+	stat: ProductStatType;
+	createdAt: string;
+};
