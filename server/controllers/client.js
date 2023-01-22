@@ -13,7 +13,7 @@ export const getProducts = async (req, res) => {
 
 				return {
 					...product._doc,
-					stat,
+					stat: stat[0],
 				};
 			})
 		);
