@@ -4,12 +4,10 @@ import {
 	Drawer,
 	List,
 	ListItemButton,
-	ListItemIcon,
 	Palette,
 	Typography,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { SettingsOutlined } from '@mui/icons-material';
 import { FlexBetween } from '../../global.styled';
 
 type DrawerStyledProps = {
@@ -74,12 +72,11 @@ export const LinkInner = styled(ListItemButton)(
 		paddingLeft: '3rem',
 		color: isActive ? palette.primaryCustom[600] : palette.secondaryCustom[100],
 		backgroundColor: isActive ? palette.secondaryCustom[300] : 'transparent',
-	})
-);
-
-export const LinkIcon = styled(ListItemIcon)(
-	({ palette, isActive }: LinkProps) => ({
-		color: isActive ? palette.primaryCustom[600] : palette.secondaryCustom[200],
+		svg: {
+			color: isActive
+				? palette.primaryCustom[600]
+				: palette.secondaryCustom[200],
+		},
 	})
 );
 
@@ -90,12 +87,5 @@ export const UserContainer = styled(Box)({
 
 export const UserWrapper = styled(FlexBetween)({
 	margin: '1rem 2rem 0 3rem',
-	gap: '1rem'
-})
-
-export const Settings = styled(SettingsOutlined)(
-	({ iconColor }: { iconColor: string }) => ({
-		fontSize: '25px',
-		color: iconColor,
-	})
-);
+	gap: '1rem',
+});

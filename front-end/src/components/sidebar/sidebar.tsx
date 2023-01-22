@@ -16,6 +16,7 @@ import {
 	TrendingUpOutlined,
 	PieChartOutlined,
 	ChevronLeft,
+	SettingsOutlined,
 } from '@mui/icons-material';
 
 import {
@@ -23,6 +24,7 @@ import {
 	Divider,
 	IconButton,
 	ListItem,
+	ListItemIcon,
 	ListItemText,
 	useTheme,
 } from '@mui/material';
@@ -35,10 +37,8 @@ import {
 	LinkStyled,
 	ListTitle,
 	LinkInner,
-	LinkIcon,
 	ListStyled,
 	UserContainer,
-	Settings,
 	UserWrapper,
 } from './sidebar.styled';
 
@@ -159,9 +159,7 @@ export const Sidebar = ({
 									<ListItem key={text} disablePadding>
 										<LinkStyled to={to}>
 											<LinkInner palette={palette} isActive={active === to}>
-												<LinkIcon palette={palette} isActive={active === to}>
-													{icon}
-												</LinkIcon>
+												<ListItemIcon>{icon}</ListItemIcon>
 												<ListItemText primary={text} />
 
 												{active === to && <ChevronRightOutlined />}
@@ -178,7 +176,7 @@ export const Sidebar = ({
 							<Divider />
 							<UserWrapper>
 								<UserCard />
-								<Settings iconColor={palette.secondaryCustom[300]} />
+								<SettingsOutlined htmlColor={palette.secondaryCustom[300]} />
 							</UserWrapper>
 						</UserContainer>
 					</DrawerInner>
