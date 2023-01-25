@@ -8,12 +8,6 @@ import { getMode } from './redux/state/selectors';
 import { useAppSelector } from './redux/store/hooks';
 import { themeSettings } from './theme/theme-settings';
 
-export enum BreakpointsEnum {
-	Sm = 576,
-	Md = 768,
-	Lg = 992,
-	XL = 1200,
-}
 
 function App() {
 	const mode = useAppSelector(getMode);

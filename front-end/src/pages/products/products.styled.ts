@@ -1,4 +1,5 @@
 import { Box, styled } from '@mui/material';
+import { BreakpointsEnum } from '../../typedef';
 
 export const Container = styled(Box)({
 	margin: '1.5rem 2.5rem',
@@ -13,9 +14,13 @@ export const Products = styled(Box)({
 	marginTop: 20,
 
 	'& > div': {
-		gridColumn: 'none',
+		gridColumn: 'span 16',
 
-		'@media(min-width: 1000px)': {
+		[`@media(min-width: ${BreakpointsEnum.Sm}px)`]: {
+			gridColumn: 'span 8',
+		},
+
+		[`@media(min-width: ${BreakpointsEnum.Lg}px)`]: {
 			gridColumn: 'span 4',
 		},
 	},
