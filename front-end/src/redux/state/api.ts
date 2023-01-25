@@ -14,7 +14,7 @@ export const api = createApi({
 			query: () => 'client/products',
 			providesTags: ['Products'],
 		}),
-		getCustomers: build.query<UserType, void>({
+		getCustomers: build.query<UserType[], void>({
 			query: () => 'client/customers',
 			providesTags: ['Customers'],
 		}),

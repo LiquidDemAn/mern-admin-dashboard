@@ -31,7 +31,7 @@ import {
 import {
 	DrawerInner,
 	DrawerStyled,
-	Header,
+	LogoWrapper,
 	Logo,
 	ChevronButton,
 	LinkStyled,
@@ -139,12 +139,12 @@ export const Sidebar = ({ isSidebarOpen, menuToggle, handleClose }: Props) => {
 					backgroundColor={palette.backgroundAlt.alt}
 				>
 					<DrawerInner>
-						<Header color={palette.secondary.main}>
+						<LogoWrapper color={palette.secondary.main}>
 							<Logo variant='h4'>ECOMVISION</Logo>
 							<ChevronButton onClick={menuToggle}>
 								<ChevronLeft />
 							</ChevronButton>
-						</Header>
+						</LogoWrapper>
 						<ListStyled>
 							{navItems.map(({ text, icon, to }) =>
 								to ? (

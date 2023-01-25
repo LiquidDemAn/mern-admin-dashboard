@@ -50,7 +50,7 @@ export const DrawerInner = styled(Box)({
 	width: '100%',
 });
 
-export const Header = styled(Box)({
+export const LogoWrapper = styled(Box)({
 	display: 'flex',
 	alignItems: 'center',
 	gap: '0.5rem',
