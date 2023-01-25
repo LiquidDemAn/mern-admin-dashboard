@@ -22,7 +22,6 @@ import {
 import {
 	Box,
 	Divider,
-	IconButton,
 	ListItem,
 	ListItemIcon,
 	ListItemText,
@@ -34,6 +33,7 @@ import {
 	DrawerStyled,
 	Header,
 	Logo,
+	ChevronButton,
 	LinkStyled,
 	ListTitle,
 	LinkInner,
@@ -44,7 +44,6 @@ import {
 
 type Props = {
 	isSidebarOpen: boolean;
-	isNonMobile: boolean;
 	menuToggle: () => void;
 	handleClose: () => void;
 };
@@ -119,12 +118,7 @@ const navItems = [
 	},
 ];
 
-export const Sidebar = ({
-	isSidebarOpen,
-	isNonMobile,
-	menuToggle,
-	handleClose,
-}: Props) => {
+export const Sidebar = ({ isSidebarOpen, menuToggle, handleClose }: Props) => {
 	const { pathname } = useLocation();
 	const { palette } = useTheme();
 	const [active, setActive] = useState('');
@@ -147,11 +141,9 @@ export const Sidebar = ({
 					<DrawerInner>
 						<Header color={palette.secondary.main}>
 							<Logo variant='h4'>ECOMVISION</Logo>
-							{!isNonMobile && (
-								<IconButton onClick={menuToggle}>
-									<ChevronLeft />
-								</IconButton>
-							)}
+							<ChevronButton onClick={menuToggle}>
+								<ChevronLeft />
+							</ChevronButton>
 						</Header>
 						<ListStyled>
 							{navItems.map(({ text, icon, to }) =>

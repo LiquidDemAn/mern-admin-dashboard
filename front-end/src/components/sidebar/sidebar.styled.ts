@@ -2,6 +2,7 @@ import { styled } from '@mui/system';
 import {
 	Box,
 	Drawer,
+	IconButton,
 	List,
 	ListItemButton,
 	Palette,
@@ -9,6 +10,7 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { FlexBetween } from '../../global.styled';
+import { BreakpointsEnum } from '../../typedef';
 
 type DrawerStyledProps = {
 	color: string;
@@ -23,6 +25,13 @@ type LinkProps = {
 export const DrawerStyled = styled(Drawer)(
 	({ color, backgroundColor }: DrawerStyledProps) => ({
 		width: 250,
+		position: 'absolute',
+
+		[`@media(min-width: ${BreakpointsEnum.Md}px)`]: {
+			position: 'relative',
+			borderWidth: 0,
+		},
+
 		'& .MuiDrawer-paper': {
 			boxSizing: 'border-box',
 			borderWidth: 2,
@@ -30,7 +39,7 @@ export const DrawerStyled = styled(Drawer)(
 			backgroundColor,
 			width: 250,
 
-			'@media(min-width: 600px)': {
+			[`@media(min-width: ${BreakpointsEnum.Sm}px)`]: {
 				borderWidth: 0,
 			},
 		},
@@ -50,6 +59,14 @@ export const Header = styled(Box)({
 
 export const Logo = styled(Typography)({
 	fontWeight: 700,
+});
+
+export const ChevronButton = styled(IconButton)({
+	display: 'block',
+
+	[`@media(min-width: ${BreakpointsEnum.Md}px)`]: {
+		display: 'none',
+	},
 });
 
 export const LinkStyled = styled(Link)({
