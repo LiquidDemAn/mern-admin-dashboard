@@ -1,10 +1,6 @@
 import { Box, styled } from '@mui/material';
 import { BreakpointsEnum } from '../../typedef';
 
-export const Container = styled(Box)({
-	margin: '1.5rem 2.5rem',
-});
-
 export const Products = styled(Box)({
 	display: 'grid',
 	gridTemplateColumns: 'repeat(16, minmax(0, 1fr))',

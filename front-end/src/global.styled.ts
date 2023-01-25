@@ -7,3 +7,6 @@ export const FlexBetween = styled(Box)({
 	justifyContent: 'space-between',
 });
 
+export const PageContainer = styled(Box)({
+	margin: '1.5rem 2.5rem',
+});
