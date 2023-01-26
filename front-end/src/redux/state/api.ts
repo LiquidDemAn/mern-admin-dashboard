@@ -23,7 +23,7 @@ export const api = createApi({
 			query: () => 'client/customers',
 			providesTags: ['Customers'],
 		}),
-		getTransactions: build.query<TransactionType[], TransactionParams>({
+		getTransactions: build.query<{total: number, transactions: TransactionType[]}, TransactionParams>({
 			query: ({ page, pageSize, sort, search }) => ({
 				url: 'client/transactions',
 				method: 'GET',

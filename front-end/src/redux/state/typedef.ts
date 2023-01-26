@@ -50,9 +50,7 @@ export type ProductType = {
 export type TransactionParams = {
 	page?: number;
 	pageSize?: number;
-	sort?: {
-		[key: string]: string;
-	};
+	sort?: string | null;
 	search?: string;
 };
 

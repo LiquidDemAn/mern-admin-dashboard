@@ -5,6 +5,7 @@ import { Layout } from './components/layout';
 import { CustomersPage } from './pages/customers';
 import { DashboardPage } from './pages/dashboard';
 import { ProductsPage } from './pages/products';
+import { TransactionsPage } from './pages/transactions';
 import { getMode } from './redux/state/selectors';
 import { useAppSelector } from './redux/store/hooks';
 import { themeSettings } from './theme/theme-settings';
@@ -24,6 +25,7 @@ function App() {
 							<Route path='/dashboard' element={<DashboardPage />} />
 							<Route path='/products' element={<ProductsPage />} />
 							<Route path='/customers' element={<CustomersPage />} />
+							<Route path='/transactions' element={<TransactionsPage />} />
 						</Route>
 					</Routes>
 				</ThemeProvider>
