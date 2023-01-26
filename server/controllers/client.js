@@ -2,6 +2,7 @@ import Product from '../models/Product.js';
 import ProductStat from '../models/ProductStat.js';
 import Transaction from '../models/Transaction.js';
 import User from '../models/User.js';
+import { generateSort } from '../utils.js';
 
 export const getProducts = async (req, res) => {
 	try {
@@ -51,17 +52,7 @@ export const getTransactions = async (req, res) => {
 		// sort should look like this: {'field': 'userId', 'sort': 'desc'}
 		const { page = 1, pageSize = 20, sort = null, search = '' } = req.query;
 
-		// formatted sort should look like {userId: -1}
-		const generateSort = () => {
-			const sortParsed = JSON.parse(sort);
-			const sortFormatted = {
-				[sortParsed.field]: (sortParsed.sort = 'asc' ? 1 : -1),
-			};
-
-			return sortFormatted;
-		};
-
-		const sortFormatted = Boolean(sort) ? generateSort() : {};
+		const sortFormatted = Boolean(sort) ? generateSort(sort) : {};
 
 		const transactions = await Transaction.find({
 			$or: [
