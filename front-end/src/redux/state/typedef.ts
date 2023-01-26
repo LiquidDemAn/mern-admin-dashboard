@@ -46,3 +46,20 @@ export type ProductType = {
 	stat: ProductStatType;
 	createdAt: string;
 };
+
+export type TransactionParams = {
+	page?: number;
+	pageSize?: number;
+	sort?: {
+		[key: string]: string;
+	};
+	search?: string;
+};
+
+export type TransactionType = {
+	_id: string;
+	userId: string;
+	cost: string;
+	products: string[];
+	createdAt: Date;
+};
