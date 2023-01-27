@@ -32,5 +32,8 @@ export const TableContainer = styled(Box)(
 			color: palette.secondaryCustom[100],
 			borderTop: 'none',
 		},
+		'& .MuiDataGrid-toolbarContainer .MuiButton-text': {
+			color: palette.secondaryCustom[200],
+		},
 	})
 );

@@ -2,6 +2,7 @@ import { useTheme } from '@mui/material';
 import { DataGrid, GridColDef, GridSortItem } from '@mui/x-data-grid';
 import { useState } from 'react';
 import { Header } from '../../components/header';
+import { TableToolbar } from '../../components/table-toolbar';
 import { PageContainer, TableContainer } from '../../global.styled';
 import { useGetTransactionsQuery } from '../../redux/state/api';
 import { TransactionType } from '../../redux/state/typedef';
@@ -45,11 +46,12 @@ export const TransactionsPage = () => {
 			<TableContainer palette={palette}>
 				<DataGrid
 					loading={isLoading}
-					rows={data?.transactions || []}
+					rows={(data && data.transactions) || []}
 					getRowId={(row: TransactionType) => row._id}
 					columns={columns}
 					pagination
-					rowCount={data?.total}
+					rowCount={(data && data.total) || 0}
+					rowsPerPageOptions={[20, 50, 100]}
 					page={page}
 					pageSize={pageSize}
 					paginationMode='server'
@@ -57,6 +59,7 @@ export const TransactionsPage = () => {
 					onPageChange={(newPage) => setPage(newPage)}
 					onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
 					onSortModelChange={(newSortModel) => setSort(newSortModel[0])}
+					components={{ Toolbar: TableToolbar }}
 				/>
 			</TableContainer>
 		</PageContainer>
