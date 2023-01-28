@@ -6,9 +6,16 @@ import {
 	GridToolbarExport,
 } from '@mui/x-data-grid';
 import { FlexBetween } from '../../global.styled';
-import { IconButton, InputAdornment, TextField } from '@mui/material';
+import { IconButton, InputAdornment } from '@mui/material';
+import { MutableRefObject } from 'react';
+import { SearchTextField } from './table-toolbar.styled';
 
-export const TableToolbar = () => {
+type Props = {
+	searchRef: MutableRefObject<null>;
+	onSearch: () => void;
+};
+
+export const TableToolbar = ({ searchRef, onSearch }: Props) => {
 	return (
 		<GridToolbarContainer>
 			<FlexBetween width='100%'>
@@ -17,14 +24,14 @@ export const TableToolbar = () => {
 					<GridToolbarDensitySelector />
 					<GridToolbarExport />
 				</FlexBetween>
-				<TextField
+				<SearchTextField
 					label='Search...'
-					sx={{ mb: '0.5rem', width: '15rem' }}
-					// value={searchValue}
+					variant='standard'
+					inputRef={searchRef}
 					InputProps={{
 						endAdornment: (
 							<InputAdornment position='end'>
-								<IconButton onClick={() => {}}>
+								<IconButton onClick={onSearch}>
 									<Search />
 								</IconButton>
 							</InputAdornment>

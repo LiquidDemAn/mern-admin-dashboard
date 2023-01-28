@@ -1,17 +1,46 @@
 import { useTheme } from '@mui/material';
-import { DataGrid, GridColDef, GridSortItem } from '@mui/x-data-grid';
-import { useState } from 'react';
+import {
+	DataGrid,
+	GridColDef,
+	GridSortItem,
+	GridSortModel,
+} from '@mui/x-data-grid';
+import { useRef, useState } from 'react';
 import { Header } from '../../components/header';
 import { TableToolbar } from '../../components/table-toolbar';
 import { PageContainer, TableContainer } from '../../global.styled';
 import { useGetTransactionsQuery } from '../../redux/state/api';
 import { TransactionType } from '../../redux/state/typedef';
 
+const rowsPerPage = [20, 50, 100];
+
 export const TransactionsPage = () => {
 	const [page, setPage] = useState(0);
-	const [pageSize, setPageSize] = useState(20);
+	const [pageSize, setPageSize] = useState(rowsPerPage[0]);
 	const [sort, setSort] = useState<GridSortItem | null>(null);
 	const [search, setSearch] = useState('');
+
+	const searchRef = useRef<HTMLInputElement | null>(null);
+
+	const onSearch = () => {
+		const value = searchRef.current?.value;
+
+		if (value) {
+			setSearch(value);
+		}
+	};
+
+	const onPageChange = (newPage: number) => {
+		setPage(newPage);
+	};
+
+	const onPageSizeChange = (newPageSize: number) => {
+		setPageSize(newPageSize);
+	};
+
+	const onSortModelChange = (newSortModel: GridSortModel) => {
+		setSort(newSortModel[0]);
+	};
 
 	const { palette } = useTheme();
 	const { data, isLoading } = useGetTransactionsQuery({
@@ -46,20 +75,23 @@ export const TransactionsPage = () => {
 			<TableContainer palette={palette}>
 				<DataGrid
 					loading={isLoading}
-					rows={(data && data.transactions) || []}
+					rows={data?.transactions || []}
 					getRowId={(row: TransactionType) => row._id}
 					columns={columns}
 					pagination
-					rowCount={(data && data.total) || 0}
-					rowsPerPageOptions={[20, 50, 100]}
+					rowCount={data?.total}
+					rowsPerPageOptions={rowsPerPage}
 					page={page}
 					pageSize={pageSize}
 					paginationMode='server'
 					sortingMode='server'
-					onPageChange={(newPage) => setPage(newPage)}
-					onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-					onSortModelChange={(newSortModel) => setSort(newSortModel[0])}
+					onPageChange={onPageChange}
+					onPageSizeChange={onPageSizeChange}
+					onSortModelChange={onSortModelChange}
 					components={{ Toolbar: TableToolbar }}
+					componentsProps={{
+						toolbar: { searchRef, onSearch },
+					}}
 				/>
 			</TableContainer>
 		</PageContainer>
