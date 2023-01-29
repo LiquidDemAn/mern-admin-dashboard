@@ -6,6 +6,7 @@ import { CustomersPage } from './pages/customers';
 import { DashboardPage } from './pages/dashboard';
 import { GeographyPage } from './pages/geography';
 import { ProductsPage } from './pages/products';
+import { OverviewPage } from './pages/overview';
 import { TransactionsPage } from './pages/transactions';
 import { getMode } from './redux/state/selectors';
 import { useAppSelector } from './redux/store/hooks';
@@ -28,6 +29,7 @@ function App() {
 							<Route path='/customers' element={<CustomersPage />} />
 							<Route path='/transactions' element={<TransactionsPage />} />
 							<Route path='/geography' element={<GeographyPage />} />
+							<Route path='/overview' element={<OverviewPage />} />
 						</Route>
 					</Routes>
 				</ThemeProvider>
