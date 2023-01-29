@@ -61,3 +61,10 @@ export type TransactionType = {
 	products: string[];
 	createdAt: Date;
 };
+
+export type CountryStatType = {
+	id: string;
+	value: string;
+};
+
+

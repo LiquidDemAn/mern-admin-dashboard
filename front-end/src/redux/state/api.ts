@@ -4,12 +4,13 @@ import {
 	TransactionType,
 	UserType,
 	TransactionParams,
+	CountryStatType,
 } from './typedef';
 
 export const api = createApi({
 	reducerPath: 'adminApi',
 	baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
-	tagTypes: ['User', 'Products', 'Customers', 'Transactions'],
+	tagTypes: ['User', 'Products', 'Customers', 'Transactions', 'Geography'],
 	endpoints: (build) => ({
 		getUser: build.query<UserType, string>({
 			query: (id) => `general/user/${id}`,
@@ -23,13 +24,20 @@ export const api = createApi({
 			query: () => 'client/customers',
 			providesTags: ['Customers'],
 		}),
-		getTransactions: build.query<{total: number, transactions: TransactionType[]}, TransactionParams>({
+		getTransactions: build.query<
+			{ total: number; transactions: TransactionType[] },
+			TransactionParams
+		>({
 			query: ({ page, pageSize, sort, search }) => ({
 				url: 'client/transactions',
 				method: 'GET',
 				params: { page, pageSize, sort, search },
 			}),
 			providesTags: ['Transactions'],
+		}),
+		getGeography: build.query<CountryStatType, void>({
+			query: () => 'client/geography',
+			providesTags: ['Geography'],
 		}),
 	}),
 });
@@ -39,4 +47,5 @@ export const {
 	useGetProductsQuery,
 	useGetCustomersQuery,
 	useGetTransactionsQuery,
+	useGetGeographyQuery,
 } = api;
