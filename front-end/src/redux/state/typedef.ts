@@ -32,7 +32,7 @@ export type ProductStatType = {
 	yearlyTotalSoldUnits: number;
 	dailyData: DayDataType[];
 	monthlyData: MonthDataType[];
-	createdAt: string;
+	createdAt: Date;
 };
 
 export type ProductType = {
@@ -44,7 +44,7 @@ export type ProductType = {
 	rating: number;
 	supply: number;
 	stat: ProductStatType;
-	createdAt: string;
+	createdAt: Date;
 };
 
 export type TransactionParams = {
@@ -67,4 +67,16 @@ export type CountryStatType = {
 	value: string;
 };
 
-
+export type SalesType = {
+	_id: string;
+	totalCustomers: number;
+	yearlySalesTotal: number;
+	yearlyTotalSoldUnits: number;
+	year: number;
+	monthlyData: MonthDataType[];
+	dailyData: DayDataType[];
+	salesByCategory: {
+		[key: string]: number;
+	};
+	createdAt: Date;
+};
