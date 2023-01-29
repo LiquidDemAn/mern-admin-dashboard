@@ -35,7 +35,7 @@ export const api = createApi({
 			}),
 			providesTags: ['Transactions'],
 		}),
-		getGeography: build.query<CountryStatType, void>({
+		getGeography: build.query<CountryStatType[], void>({
 			query: () => 'client/geography',
 			providesTags: ['Geography'],
 		}),

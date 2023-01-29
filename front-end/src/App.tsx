@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/layout';
 import { CustomersPage } from './pages/customers';
 import { DashboardPage } from './pages/dashboard';
+import { GeographyPage } from './pages/geography';
 import { ProductsPage } from './pages/products';
 import { TransactionsPage } from './pages/transactions';
 import { getMode } from './redux/state/selectors';
@@ -26,6 +27,7 @@ function App() {
 							<Route path='/products' element={<ProductsPage />} />
 							<Route path='/customers' element={<CustomersPage />} />
 							<Route path='/transactions' element={<TransactionsPage />} />
+							<Route path='/geography' element={<GeographyPage />} />
 						</Route>
 					</Routes>
 				</ThemeProvider>

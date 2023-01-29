@@ -11,11 +11,13 @@ export const PageContainer = styled(Box)({
 	margin: '1.5rem 2.5rem',
 });
 
-export const TableContainer = styled(Box)(
-	({ palette }: { palette: Palette }) => ({
-		height: '75vh',
-		marginTop: 40,
+export const ContentContainer = styled(Box)({
+	height: '75vh',
+	marginTop: 20,
+});
 
+export const TableContainer = styled(ContentContainer)(
+	({ palette }: { palette: Palette }) => ({
 		'& .MuiDataGrid-root': {
 			border: 'none',
 		},
