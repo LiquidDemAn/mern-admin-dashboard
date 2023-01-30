@@ -1,6 +1,7 @@
 import { useTheme } from '@mui/material';
 import { ResponsiveLine, Serie } from '@nivo/line';
 import { useMemo } from 'react';
+import { getLinesTheme } from '../../nivo/lines-theme';
 import { OverviewSelectEnum } from '../../pages/overview/overview';
 import { useGetSalesQuery } from '../../redux/state/api';
 
@@ -10,8 +11,10 @@ type Props = {
 };
 
 export const OverviewChart = ({ view, isDashboard = false }: Props) => {
-	const { palette } = useTheme();
 	const { data, isLoading } = useGetSalesQuery();
+
+	const { palette } = useTheme();
+	const linesTheme = getLinesTheme(palette);
 
 	const [totalSalesLine, totalUnitsLine] = useMemo(() => {
 		if (!data) {
@@ -58,39 +61,7 @@ export const OverviewChart = ({ view, isDashboard = false }: Props) => {
 					data={
 						view === OverviewSelectEnum.Sales ? totalSalesLine : totalUnitsLine
 					}
-					theme={{
-						axis: {
-							domain: {
-								line: {
-									stroke: palette.secondaryCustom[200],
-								},
-							},
-							legend: {
-								text: {
-									fill: palette.secondaryCustom[200],
-								},
-							},
-							ticks: {
-								line: {
-									stroke: palette.secondaryCustom[200],
-									strokeWidth: 1,
-								},
-								text: {
-									fill: palette.secondaryCustom[200],
-								},
-							},
-						},
-						legends: {
-							text: {
-								fill: palette.secondaryCustom[200],
-							},
-						},
-						tooltip: {
-							container: {
-								color: palette.secondaryCustom[600],
-							},
-						},
-					}}
+					theme={linesTheme}
 					margin={{ top: 20, right: 50, bottom: 50, left: 70 }}
 					xScale={{ type: 'point' }}
 					yScale={{

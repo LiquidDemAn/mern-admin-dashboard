@@ -3,11 +3,13 @@ import { ResponsiveLine, Serie } from '@nivo/line';
 import { useMemo } from 'react';
 import { Header } from '../../components/header';
 import { ContentContainer, PageContainer } from '../../global.styled';
+import { getLinesTheme } from '../../nivo/lines-theme';
 import { useGetSalesQuery } from '../../redux/state/api';
 
 export const MonthlyPage = () => {
 	const { data } = useGetSalesQuery();
 	const { palette } = useTheme();
+	const linesTheme = getLinesTheme(palette);
 
 	const formattedData = useMemo(() => {
 		if (!data) {
@@ -46,39 +48,7 @@ export const MonthlyPage = () => {
 				{data ? (
 					<ResponsiveLine
 						data={formattedData}
-						theme={{
-							axis: {
-								domain: {
-									line: {
-										stroke: palette.secondaryCustom[200],
-									},
-								},
-								legend: {
-									text: {
-										fill: palette.secondaryCustom[200],
-									},
-								},
-								ticks: {
-									line: {
-										stroke: palette.secondaryCustom[200],
-										strokeWidth: 1,
-									},
-									text: {
-										fill: palette.secondaryCustom[200],
-									},
-								},
-							},
-							legends: {
-								text: {
-									fill: palette.secondaryCustom[200],
-								},
-							},
-							tooltip: {
-								container: {
-									color: palette.secondaryCustom[600],
-								},
-							},
-						}}
+						theme={linesTheme}
 						colors={{ datum: 'color' }}
 						margin={{ top: 50, right: 50, bottom: 70, left: 60 }}
 						xScale={{ type: 'point' }}
