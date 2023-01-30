@@ -13,6 +13,7 @@ import { useAppSelector } from './redux/store/hooks';
 import { themeSettings } from './theme/theme-settings';
 import { DailyPage } from './pages/daily';
 import { MonthlyPage } from './pages/monthly';
+import { BreakdownPage } from './pages/breakdown';
 
 function App() {
 	const mode = useAppSelector(getMode);
@@ -34,6 +35,7 @@ function App() {
 							<Route path='/overview' element={<OverviewPage />} />
 							<Route path='/daily' element={<DailyPage />} />
 							<Route path='/monthly' element={<MonthlyPage />} />
+							<Route path='/breakdown' element={<BreakdownPage />} />
 						</Route>
 					</Routes>
 				</ThemeProvider>

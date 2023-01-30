@@ -3,13 +3,13 @@ import { ResponsiveLine, Serie } from '@nivo/line';
 import { useMemo } from 'react';
 import { Header } from '../../components/header';
 import { ContentContainer, PageContainer } from '../../global.styled';
-import { getLinesTheme } from '../../nivo/lines-theme';
+import { getChartTheme } from '../../chart-theme';
 import { useGetSalesQuery } from '../../redux/state/api';
 
 export const MonthlyPage = () => {
 	const { data } = useGetSalesQuery();
 	const { palette } = useTheme();
-	const linesTheme = getLinesTheme(palette);
+	const chartTheme = getChartTheme(palette);
 
 	const formattedData = useMemo(() => {
 		if (!data) {
@@ -48,7 +48,7 @@ export const MonthlyPage = () => {
 				{data ? (
 					<ResponsiveLine
 						data={formattedData}
-						theme={linesTheme}
+						theme={chartTheme}
 						colors={{ datum: 'color' }}
 						margin={{ top: 50, right: 50, bottom: 70, left: 60 }}
 						xScale={{ type: 'point' }}

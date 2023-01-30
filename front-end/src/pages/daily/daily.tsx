@@ -6,7 +6,7 @@ import { Header } from '../../components/header';
 import { ContentContainer, PageContainer } from '../../global.styled';
 import { useGetSalesQuery } from '../../redux/state/api';
 import 'react-datepicker/dist/react-datepicker.css';
-import { getLinesTheme } from '../../nivo/lines-theme';
+import { getChartTheme } from '../../chart-theme';
 
 export const DailyPage = () => {
 	const [startDate, setStartDate] = useState(new Date('2021-02-01'));
@@ -14,7 +14,7 @@ export const DailyPage = () => {
 
 	const { data } = useGetSalesQuery();
 	const { palette } = useTheme();
-	const linesTheme = getLinesTheme(palette);
+	const chartTheme = getChartTheme(palette);
 
 	const formattedData = useMemo(() => {
 		if (!data) {
@@ -86,7 +86,7 @@ export const DailyPage = () => {
 				{data ? (
 					<ResponsiveLine
 						data={formattedData}
-						theme={linesTheme}
+						theme={chartTheme}
 						colors={{ datum: 'color' }}
 						margin={{ top: 50, right: 50, bottom: 70, left: 60 }}
 						xScale={{ type: 'point' }}

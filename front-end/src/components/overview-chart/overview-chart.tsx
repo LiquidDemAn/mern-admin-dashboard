@@ -1,7 +1,7 @@
 import { useTheme } from '@mui/material';
 import { ResponsiveLine, Serie } from '@nivo/line';
 import { useMemo } from 'react';
-import { getLinesTheme } from '../../nivo/lines-theme';
+import { getChartTheme } from '../../chart-theme';
 import { OverviewSelectEnum } from '../../pages/overview/overview';
 import { useGetSalesQuery } from '../../redux/state/api';
 
@@ -14,7 +14,7 @@ export const OverviewChart = ({ view, isDashboard = false }: Props) => {
 	const { data, isLoading } = useGetSalesQuery();
 
 	const { palette } = useTheme();
-	const linesTheme = getLinesTheme(palette);
+	const chartTheme = getChartTheme(palette);
 
 	const [totalSalesLine, totalUnitsLine] = useMemo(() => {
 		if (!data) {
@@ -61,7 +61,7 @@ export const OverviewChart = ({ view, isDashboard = false }: Props) => {
 					data={
 						view === OverviewSelectEnum.Sales ? totalSalesLine : totalUnitsLine
 					}
-					theme={linesTheme}
+					theme={chartTheme}
 					margin={{ top: 20, right: 50, bottom: 50, left: 70 }}
 					xScale={{ type: 'point' }}
 					yScale={{

@@ -1,6 +1,6 @@
 import { Palette } from '@mui/material';
 
-export const getLinesTheme = (palette: Palette) => {
+export const getChartTheme = (palette: Palette) => {
 	const theme = {
 		axis: {
 			domain: {
