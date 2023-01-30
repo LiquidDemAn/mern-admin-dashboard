@@ -11,6 +11,7 @@ import { TransactionsPage } from './pages/transactions';
 import { getMode } from './redux/state/selectors';
 import { useAppSelector } from './redux/store/hooks';
 import { themeSettings } from './theme/theme-settings';
+import { DailyPage } from './pages/daily';
 
 function App() {
 	const mode = useAppSelector(getMode);
@@ -30,6 +31,7 @@ function App() {
 							<Route path='/transactions' element={<TransactionsPage />} />
 							<Route path='/geography' element={<GeographyPage />} />
 							<Route path='/overview' element={<OverviewPage />} />
+							<Route path='/daily' element={<DailyPage />} />
 						</Route>
 					</Routes>
 				</ThemeProvider>

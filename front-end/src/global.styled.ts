@@ -8,7 +8,7 @@ export const FlexBetween = styled(Box)({
 });
 
 export const PageContainer = styled(Box)({
-	margin: '1.5rem 2.5rem',
+	margin: '1rem 2rem',
 });
 
 export const ContentContainer = styled(Box)({

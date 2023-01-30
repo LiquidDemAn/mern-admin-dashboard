@@ -13,7 +13,7 @@ export type UserType = {
 
 type DayDataType = {
 	_id: string;
-	data: string;
+	date: string;
 	totalSales: number;
 	totalUnits: number;
 };
