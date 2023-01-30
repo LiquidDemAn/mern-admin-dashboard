@@ -6,6 +6,7 @@ import { Header } from '../../components/header';
 import { ContentContainer, PageContainer } from '../../global.styled';
 import { useGetSalesQuery } from '../../redux/state/api';
 import 'react-datepicker/dist/react-datepicker.css';
+import { getLinesTheme } from '../../nivo/lines-theme';
 
 export const DailyPage = () => {
 	const [startDate, setStartDate] = useState(new Date('2021-02-01'));
@@ -13,6 +14,7 @@ export const DailyPage = () => {
 
 	const { data } = useGetSalesQuery();
 	const { palette } = useTheme();
+	const linesTheme = getLinesTheme(palette);
 
 	const formattedData = useMemo(() => {
 		if (!data) {
@@ -48,7 +50,13 @@ export const DailyPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data, startDate, endDate]);
 
-	console.log(formattedData);
+	const onStartDateChange = (date: Date) => {
+		setStartDate(date);
+	};
+
+	const onEndDateChange = (date: Date) => {
+		setEndDate(date);
+	};
 
 	return (
 		<PageContainer>
@@ -58,7 +66,7 @@ export const DailyPage = () => {
 					<Box>
 						<DatePicker
 							selected={startDate}
-							onChange={(date: Date) => setStartDate(date)}
+							onChange={onStartDateChange}
 							selectsStart
 							startDate={startDate}
 							endDate={endDate}
@@ -67,7 +75,7 @@ export const DailyPage = () => {
 					<Box>
 						<DatePicker
 							selected={endDate}
-							onChange={(date: Date) => setEndDate(date)}
+							onChange={onEndDateChange}
 							selectsEnd
 							startDate={startDate}
 							endDate={endDate}
@@ -78,39 +86,7 @@ export const DailyPage = () => {
 				{data ? (
 					<ResponsiveLine
 						data={formattedData}
-						theme={{
-							axis: {
-								domain: {
-									line: {
-										stroke: palette.secondaryCustom[200],
-									},
-								},
-								legend: {
-									text: {
-										fill: palette.secondaryCustom[200],
-									},
-								},
-								ticks: {
-									line: {
-										stroke: palette.secondaryCustom[200],
-										strokeWidth: 1,
-									},
-									text: {
-										fill: palette.secondaryCustom[200],
-									},
-								},
-							},
-							legends: {
-								text: {
-									fill: palette.secondaryCustom[200],
-								},
-							},
-							tooltip: {
-								container: {
-									color: palette.secondaryCustom[600],
-								},
-							},
-						}}
+						theme={linesTheme}
 						colors={{ datum: 'color' }}
 						margin={{ top: 50, right: 50, bottom: 70, left: 60 }}
 						xScale={{ type: 'point' }}
