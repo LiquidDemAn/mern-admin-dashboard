@@ -12,6 +12,7 @@ import { getMode } from './redux/state/selectors';
 import { useAppSelector } from './redux/store/hooks';
 import { themeSettings } from './theme/theme-settings';
 import { DailyPage } from './pages/daily';
+import { MonthlyPage } from './pages/monthly';
 
 function App() {
 	const mode = useAppSelector(getMode);
@@ -32,6 +33,7 @@ function App() {
 							<Route path='/geography' element={<GeographyPage />} />
 							<Route path='/overview' element={<OverviewPage />} />
 							<Route path='/daily' element={<DailyPage />} />
+							<Route path='/monthly' element={<MonthlyPage />} />
 						</Route>
 					</Routes>
 				</ThemeProvider>
