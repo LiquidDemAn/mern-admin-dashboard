@@ -80,3 +80,8 @@ export type SalesType = {
 	};
 	createdAt: Date;
 };
+
+export type UserPerformanceType = {
+	user: UserType;
+	sales: TransactionType[];
+};

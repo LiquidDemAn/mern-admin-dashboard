@@ -6,6 +6,7 @@ import {
 	TransactionParams,
 	CountryStatType,
 	SalesType,
+	UserPerformanceType,
 } from './typedef';
 
 export const api = createApi({
@@ -19,6 +20,7 @@ export const api = createApi({
 		'Geography',
 		'Sales',
 		'Admins',
+		'Performance',
 	],
 	endpoints: (build) => ({
 		getUser: build.query<UserType, string>({
@@ -56,6 +58,10 @@ export const api = createApi({
 			query: () => 'management/admins',
 			providesTags: ['Admins'],
 		}),
+		getUserPerformance: build.query<UserPerformanceType, string>({
+			query: (id) => `management/performance/${id}`,
+			providesTags: ['Performance'],
+		}),
 	}),
 });
 
@@ -67,4 +73,5 @@ export const {
 	useGetGeographyQuery,
 	useGetSalesQuery,
 	useGetAdminsQuery,
+	useGetUserPerformanceQuery,
 } = api;
