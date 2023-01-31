@@ -15,6 +15,7 @@ import { DailyPage } from './pages/daily';
 import { MonthlyPage } from './pages/monthly';
 import { BreakdownPage } from './pages/breakdown';
 import { AdminPage } from './pages/admin';
+import { PerformancePage } from './pages/performance';
 
 function App() {
 	const mode = useAppSelector(getMode);
@@ -38,6 +39,7 @@ function App() {
 							<Route path='/monthly' element={<MonthlyPage />} />
 							<Route path='/breakdown' element={<BreakdownPage />} />
 							<Route path='/admin' element={<AdminPage />} />
+							<Route path='/performance' element={<PerformancePage />} />
 						</Route>
 					</Routes>
 				</ThemeProvider>
