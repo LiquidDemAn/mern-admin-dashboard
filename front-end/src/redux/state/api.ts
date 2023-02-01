@@ -7,6 +7,7 @@ import {
 	CountryStatType,
 	SalesType,
 	UserPerformanceType,
+	DashboardStatType,
 } from './typedef';
 
 export const api = createApi({
@@ -21,6 +22,7 @@ export const api = createApi({
 		'Sales',
 		'Admins',
 		'Performance',
+		'Dashboard',
 	],
 	endpoints: (build) => ({
 		getUser: build.query<UserType, string>({
@@ -62,6 +64,10 @@ export const api = createApi({
 			query: (id) => `management/performance/${id}`,
 			providesTags: ['Performance'],
 		}),
+		getDashboardStat: build.query<DashboardStatType, void>({
+			query: () => 'general/dashboard',
+			providesTags: ['Dashboard'],
+		}),
 	}),
 });
 
@@ -74,4 +80,5 @@ export const {
 	useGetSalesQuery,
 	useGetAdminsQuery,
 	useGetUserPerformanceQuery,
+	useGetDashboardStatQuery,
 } = api;

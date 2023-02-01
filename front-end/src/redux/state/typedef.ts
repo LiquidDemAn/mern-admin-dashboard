@@ -81,7 +81,17 @@ export type SalesType = {
 	createdAt: Date;
 };
 
+
 export type UserPerformanceType = {
 	user: UserType;
 	sales: TransactionType[];
+};
+
+export type DashboardStatType = Omit<
+	SalesType,
+	'_id' | 'year' | 'salesByCategory' | 'createdAt'
+> & {
+	thisMonthStats: MonthDataType;
+	thisDayStats: DayDataType;
+	transactions: TransactionType[];
 };
