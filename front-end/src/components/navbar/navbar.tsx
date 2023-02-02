@@ -18,6 +18,7 @@ import {
 	Wrapper,
 	UserButton,
 	RightBlock,
+	UserWrapper,
 } from './navbar.styled';
 
 type Props = {
@@ -74,7 +75,7 @@ export const Navbar = ({ menuToggle }: Props) => {
 						<SettingsOutlined />
 					</IconButton>
 
-					<FlexBetween>
+					<UserWrapper>
 						<UserButton onClick={handleClick}>
 							<UserCard />
 							<ArrowDropDownOutlined htmlColor={palette.secondaryCustom[300]} />
@@ -87,7 +88,7 @@ export const Navbar = ({ menuToggle }: Props) => {
 						>
 							<MenuItem onClick={handleClose}>Log out</MenuItem>
 						</Menu>
-					</FlexBetween>
+					</UserWrapper>
 				</RightBlock>
 			</Wrapper>
 		</Container>

@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Button } from '@mui/material';
 import { styled } from '@mui/system';
 import { FlexBetween } from '../../global.styled';
+import { BreakpointsEnum } from '../../typedef';
 
 export const Container = styled(AppBar)({
 	position: 'static',
@@ -28,6 +29,14 @@ export const SearchWrapper = styled(FlexBetween)(
 
 export const RightBlock = styled(FlexBetween)({
 	gap: '1.5rem',
+});
+
+export const UserWrapper = styled(FlexBetween)({
+	display: 'none',
+
+	[`@media(min-width: ${BreakpointsEnum.Sm}px)`]: {
+		display: 'block',
+	},
 });
 
 export const UserButton = styled(Button)({
