@@ -23,27 +23,25 @@ function App() {
 
 	return (
 		<div className='app'>
-			<BrowserRouter>
-				<ThemeProvider theme={theme}>
-					<CssBaseline />
-					<Routes>
-						<Route element={<Layout />}>
-							<Route path='/' element={<Navigate to='/dashboard' replace />} />
-							<Route path='/dashboard' element={<DashboardPage />} />
-							<Route path='/products' element={<ProductsPage />} />
-							<Route path='/customers' element={<CustomersPage />} />
-							<Route path='/transactions' element={<TransactionsPage />} />
-							<Route path='/geography' element={<GeographyPage />} />
-							<Route path='/overview' element={<OverviewPage />} />
-							<Route path='/daily' element={<DailyPage />} />
-							<Route path='/monthly' element={<MonthlyPage />} />
-							<Route path='/breakdown' element={<BreakdownPage />} />
-							<Route path='/admin' element={<AdminPage />} />
-							<Route path='/performance' element={<PerformancePage />} />
-						</Route>
-					</Routes>
-				</ThemeProvider>
-			</BrowserRouter>
+			<ThemeProvider theme={theme}>
+				<CssBaseline />
+				<Routes>
+					<Route element={<Layout />}>
+						<Route path='/' element={<Navigate to='/dashboard' replace />} />
+						<Route path='/dashboard' element={<DashboardPage />} />
+						<Route path='/products' element={<ProductsPage />} />
+						<Route path='/customers' element={<CustomersPage />} />
+						<Route path='/transactions' element={<TransactionsPage />} />
+						<Route path='/geography' element={<GeographyPage />} />
+						<Route path='/overview' element={<OverviewPage />} />
+						<Route path='/daily' element={<DailyPage />} />
+						<Route path='/monthly' element={<MonthlyPage />} />
+						<Route path='/breakdown' element={<BreakdownPage />} />
+						<Route path='/admin' element={<AdminPage />} />
+						<Route path='/performance' element={<PerformancePage />} />
+					</Route>
+				</Routes>
+			</ThemeProvider>
 		</div>
 	);
 }
