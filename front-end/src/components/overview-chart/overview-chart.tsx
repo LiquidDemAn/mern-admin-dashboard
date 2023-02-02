@@ -72,13 +72,14 @@ export const OverviewChart = ({ view, isDashboard = false }: Props) => {
 						reverse: false,
 					}}
 					yFormat=' >-.2f'
+					enableArea={isDashboard}
 					curve='catmullRom'
 					axisTop={null}
 					axisRight={null}
 					axisBottom={{
 						format: (v) => {
 							if (isDashboard) {
-								return v.slice(0.3);
+								return v.slice(0, 3);
 							}
 							return v;
 						},
@@ -91,6 +92,7 @@ export const OverviewChart = ({ view, isDashboard = false }: Props) => {
 					}}
 					axisLeft={{
 						tickSize: 5,
+						tickValues: 5,
 						tickPadding: 5,
 						tickRotation: 0,
 						legend: isDashboard
